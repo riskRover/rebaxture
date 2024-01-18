@@ -7,7 +7,7 @@ namespace Baxture_Assignment
 {
     public class UsersModel
     {
-        public string Id { get; set; } 
+        public int Id { get; set; } 
 
         [Required]
         public string Username { get; set; }
@@ -22,7 +22,7 @@ namespace Baxture_Assignment
         public int Age { get; set; }
 
         [Required]
-        public List<string> Hobbies { get; set; } = new List<string>();
+        public string Hobbies { get; set; } 
     }
 }
 
