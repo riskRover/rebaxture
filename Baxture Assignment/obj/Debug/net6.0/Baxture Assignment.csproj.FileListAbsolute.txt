@@ -1,0 +1,32 @@
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\appsettings.json
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Baxture Assignment.exe
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Baxture Assignment.deps.json
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Baxture Assignment.runtimeconfig.json
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Baxture Assignment.dll
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Baxture Assignment.pdb
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.csproj.AssemblyReference.cache
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.AssemblyInfoInputs.cache
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.AssemblyInfo.cs
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.csproj.CoreCompileInputs.cache
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\staticwebassets\msbuild.Baxture Assignment.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\staticwebassets\msbuild.build.Baxture Assignment.props
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Baxture Assignment.props
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Baxture Assignment.props
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\scopedcss\bundle\Baxture Assignment.styles.css
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.csproj.CopyComplete
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.dll
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\refint\Baxture Assignment.dll
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.pdb
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\Baxture Assignment.genruntimeconfig.cache
+C:\Users\Mayur Patil\Desktop\Baxture Assignment\Baxture Assignment\Baxture Assignment\obj\Debug\net6.0\ref\Baxture Assignment.dll
