@@ -104,6 +104,25 @@ namespace Baxture_Assignment.Controllers
 
         }
 
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUserByID(int userId)
+        {
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+
+                var param = new
+                {
+                    Id = userId,
+                };
+                var users = await connection.QueryAsync<UsersModel>("DeleteUserByID", param, commandType: CommandType.StoredProcedure);
+                return Ok(users);
+            }
+
+
+        }
+
     }
 
 }
