@@ -26,7 +26,7 @@ namespace Baxture_Assignment.Controllers
         public async Task<IActionResult> GetAllUsers()
         {
 
-            using (SqlConnection connection = new SqlConnection(cs))
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
 
                 connection.Open();
@@ -45,12 +45,36 @@ namespace Baxture_Assignment.Controllers
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetSingleUser(int userId)
         {
-            using (SqlConnection connection = new SqlConnection(cs))
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
                 DynamicParameters param = new DynamicParameters();
                 param.Add("Id", userId);
                 var users = await connection.QueryAsync<UsersModel>("GetUserByID", param, commandType: CommandType.StoredProcedure);
+                return Ok(users);
+            }
+
+
+        }
+
+
+        [HttpPost("{userId}")]
+        public async Task<IActionResult> InsertUser(UsersModel m)
+        {
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+
+                var param = new
+                {
+                    Id = m.Id,
+                    Username = m.Username,
+                    Password =  m.Password,
+                    IsAdmin =   m.IsAdmin,
+                    Age =       m.Age,
+                    Hobbies  =  m.Hobbies,
+                };
+                var users = await connection.QueryAsync<UsersModel>("InsertUser", param, commandType: CommandType.StoredProcedure);
                 return Ok(users);
             }
 
