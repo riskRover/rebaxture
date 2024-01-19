@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Baxture_Assignment.Dapper_Layer;
+using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,14 +12,15 @@ namespace Baxture_Assignment.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        string cs = "Data Source=HP15EH2\\SQLEXPRESS; Initial Catalog=BaxtureAssignmentDB; Integrated Security=False; User ID=mayurpatil; Password=7507792337aA@; Encrypt=True; TrustServerCertificate=True;";
 
         private readonly IConfiguration _configuration;
         private readonly SqlConnection _dbConnection;
-        public UsersController(IConfiguration configuration, SqlConnection dbConnection)
+        private readonly DapperORM _DapperORMlayer;
+        public UsersController(IConfiguration configuration, SqlConnection dbConnection, DapperORM DapperORMlayer)
         {
             _configuration = configuration;
             _dbConnection = dbConnection;
+            _DapperORMlayer = DapperORMlayer;
         }
 
 
@@ -26,33 +28,36 @@ namespace Baxture_Assignment.Controllers
         public async Task<IActionResult> GetAllUsers()
         {
 
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-            {
+            var users = await _DapperORMlayer.GetAllUsers();
+            return Ok(users);
 
-                connection.Open();
-                DynamicParameters param = new DynamicParameters();
-                param = null;
-                var users = await connection.QueryAsync<UsersModel>("GetAllUsers", param, commandType: CommandType.StoredProcedure);
-                return Ok(users);
+            //using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            //{
 
-
-            }
-
+            //    connection.Open();
+            //    DynamicParameters param = new DynamicParameters();
+            //    param = null;
+            //    var users = await connection.QueryAsync<UsersModel>("GetAllUsers", param, commandType: CommandType.StoredProcedure);
+            //    return Ok(users);
+            //}
 
         }
 
-        // GET api/users/{userId}
+        
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetSingleUser(int userId)
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-                DynamicParameters param = new DynamicParameters();
-                param.Add("Id", userId);
-                var users = await connection.QueryAsync<UsersModel>("GetUserByID", param, commandType: CommandType.StoredProcedure);
-                return Ok(users);
-            }
+
+            var user = await _DapperORMlayer.GetSingleUser(userId);
+            return Ok(user);
+            //using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            //{
+            //    connection.Open();
+            //    DynamicParameters param = new DynamicParameters();
+            //    param.Add("Id", userId);
+            //    var users = await connection.QueryAsync<UsersModel>("GetUserByID", param, commandType: CommandType.StoredProcedure);
+            //    return Ok(users);
+            //}
 
 
         }
@@ -61,22 +66,28 @@ namespace Baxture_Assignment.Controllers
         [HttpPost("{userId}")]
         public async Task<IActionResult> InsertUser(UsersModel m)
         {
+
             using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
-                connection.Open();
-
-                var param = new
-                {
-                    Id = m.Id,
-                    Username = m.Username,
-                    Password =  m.Password,
-                    IsAdmin =   m.IsAdmin,
-                    Age =       m.Age,
-                    Hobbies  =  m.Hobbies,
-                };
-                var users = await connection.QueryAsync<UsersModel>("InsertUser", param, commandType: CommandType.StoredProcedure);
+                var users = await _DapperORMlayer.InsertUser(m);
                 return Ok(users);
             }
+            //using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            //{
+            //    connection.Open();
+
+            //    var param = new
+            //    {
+            //        Id = m.Id,
+            //        Username = m.Username,
+            //        Password =  m.Password,
+            //        IsAdmin =   m.IsAdmin,
+            //        Age =       m.Age,
+            //        Hobbies  =  m.Hobbies,
+            //    };
+            //    var users = await connection.QueryAsync<UsersModel>("InsertUser", param, commandType: CommandType.StoredProcedure);
+            //    return Ok(users);
+            //}
 
 
         }
@@ -84,22 +95,25 @@ namespace Baxture_Assignment.Controllers
         [HttpPut("{userId}")]
         public async Task<IActionResult> UpdateUser(int userId , UsersModel m)
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
 
-                var param = new
-                {
-                    Id = userId,
-                    Username = m.Username,
-                    Password = m.Password,
-                    IsAdmin = m.IsAdmin,
-                    Age = m.Age,
-                    Hobbies = m.Hobbies,
-                };
-                var users = await connection.QueryAsync<UsersModel>("UpdateUserByID", param, commandType: CommandType.StoredProcedure);
-                return Ok(users);
-            }
+            var users = await _DapperORMlayer.UpdateUserByID(userId, m);
+            return Ok(users);
+            //using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            //{
+            //    connection.Open();
+
+            //    var param = new
+            //    {
+            //        Id = userId,
+            //        Username = m.Username,
+            //        Password = m.Password,
+            //        IsAdmin = m.IsAdmin,
+            //        Age = m.Age,
+            //        Hobbies = m.Hobbies,
+            //    };
+            //    var users = await connection.QueryAsync<UsersModel>("UpdateUserByID", param, commandType: CommandType.StoredProcedure);
+            //    return Ok(users);
+            //}
 
 
         }
@@ -108,18 +122,8 @@ namespace Baxture_Assignment.Controllers
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteUserByID(int userId)
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-
-                var param = new
-                {
-                    Id = userId,
-                };
-                var users = await connection.QueryAsync<UsersModel>("DeleteUserByID", param, commandType: CommandType.StoredProcedure);
-                return Ok(users);
-            }
-
+            var users = await _DapperORMlayer.DeleteUserByID(userId);
+            return Ok(users);
 
         }
 

@@ -1,10 +1,11 @@
+using Baxture_Assignment.Dapper_Layer;
 using Microsoft.Data.SqlClient;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddScoped<DapperORM>();
 builder.Services.AddControllers();
 
 // Register SqlConnection
