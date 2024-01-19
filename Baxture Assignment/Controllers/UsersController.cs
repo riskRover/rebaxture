@@ -81,5 +81,31 @@ namespace Baxture_Assignment.Controllers
 
         }
 
+        [HttpPut("{userId}")]
+        public async Task<IActionResult> UpdateUser(int userId , UsersModel m)
+        {
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+
+                var param = new
+                {
+                    Id = userId,
+                    Username = m.Username,
+                    Password = m.Password,
+                    IsAdmin = m.IsAdmin,
+                    Age = m.Age,
+                    Hobbies = m.Hobbies,
+                };
+                var users = await connection.QueryAsync<UsersModel>("UpdateUserByID", param, commandType: CommandType.StoredProcedure);
+                return Ok(users);
+            }
+
+
+        }
+
     }
+
 }
+
+
