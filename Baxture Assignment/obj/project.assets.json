@@ -2859,11 +2859,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mayur Patil\\Desktop\\Baxture Assignment\\Baxture Assignment\\Baxture Assignment\\Baxture Assignment.csproj",
+      "projectUniqueName": "C:\\Users\\Mayur Patil\\Source\\Repos\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj",
       "projectName": "Baxture Assignment",
-      "projectPath": "C:\\Users\\Mayur Patil\\Desktop\\Baxture Assignment\\Baxture Assignment\\Baxture Assignment\\Baxture Assignment.csproj",
+      "projectPath": "C:\\Users\\Mayur Patil\\Source\\Repos\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj",
       "packagesPath": "C:\\Users\\Mayur Patil\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mayur Patil\\Desktop\\Baxture Assignment\\Baxture Assignment\\Baxture Assignment\\obj\\",
+      "outputPath": "C:\\Users\\Mayur Patil\\Source\\Repos\\BaxtureAssignment\\Baxture Assignment\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mayur Patil\\AppData\\Roaming\\NuGet\\NuGet.Config",

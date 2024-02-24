@@ -8,6 +8,7 @@ using System.Data;
 
 namespace Baxture_Assignment.Controllers
 {
+    //API CONTROLLER
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
