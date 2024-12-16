@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 
@@ -20,7 +20,7 @@ namespace Baxture_Assignment.Dapper_Layer
 
         public async Task<IEnumerable<UsersModel>> GetAllUsers()
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (MySqlConnection connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
                 DynamicParameters param = new DynamicParameters();
@@ -31,7 +31,7 @@ namespace Baxture_Assignment.Dapper_Layer
 
         public async Task<IEnumerable<UsersModel>> GetSingleUser(int userId)
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (MySqlConnection connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
                 DynamicParameters param = new DynamicParameters();
@@ -42,7 +42,7 @@ namespace Baxture_Assignment.Dapper_Layer
 
         public async Task<IEnumerable<UsersModel>> InsertUser(UsersModel m)
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (MySqlConnection connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
 
@@ -62,7 +62,7 @@ namespace Baxture_Assignment.Dapper_Layer
 
         public async Task<IEnumerable<UsersModel>> UpdateUserByID(int userId, UsersModel m)
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (MySqlConnection connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
 
@@ -82,7 +82,7 @@ namespace Baxture_Assignment.Dapper_Layer
 
         public async Task<IEnumerable<UsersModel>> DeleteUserByID(int userId)
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (MySqlConnection connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
 

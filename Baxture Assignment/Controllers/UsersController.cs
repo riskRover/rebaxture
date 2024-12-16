@@ -3,8 +3,7 @@ using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace Baxture_Assignment.Controllers
 {
@@ -16,9 +15,9 @@ namespace Baxture_Assignment.Controllers
     {
 
         private readonly IConfiguration _configuration;
-        private readonly SqlConnection _dbConnection;
+        private readonly MySqlConnection _dbConnection;
         private readonly DapperORM _DapperORMlayer;
-        public UsersController(IConfiguration configuration, SqlConnection dbConnection, DapperORM DapperORMlayer)
+        public UsersController(IConfiguration configuration, MySqlConnection dbConnection, DapperORM DapperORMlayer)
         {
             _configuration = configuration;
             _dbConnection = dbConnection;
@@ -69,7 +68,7 @@ namespace Baxture_Assignment.Controllers
         public async Task<IActionResult> InsertUser(UsersModel m)
         {
 
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (MySqlConnection connection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 var users = await _DapperORMlayer.InsertUser(m);
                 return Ok(users);

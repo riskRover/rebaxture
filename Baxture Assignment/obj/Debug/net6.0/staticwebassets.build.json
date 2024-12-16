@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "zSp7o5SRo2GlwHw7bSfsUG6i9t3Lpf8FppFtlwAhXi0=",
+  "Hash": "iYpBHYSLuiwm3zbOOfZVta8x0kF297s975rb4qO6vlc=",
   "Source": "Baxture Assignment",
   "BasePath": "_content/Baxture Assignment",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

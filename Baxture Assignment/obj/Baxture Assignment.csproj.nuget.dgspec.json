@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mayur Patil\\Source\\Repos\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj": {}
+    "C:\\Users\\Mayur Patil\\Documents\\Project\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mayur Patil\\Source\\Repos\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj": {
+    "C:\\Users\\Mayur Patil\\Documents\\Project\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mayur Patil\\Source\\Repos\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj",
+        "projectUniqueName": "C:\\Users\\Mayur Patil\\Documents\\Project\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj",
         "projectName": "Baxture Assignment",
-        "projectPath": "C:\\Users\\Mayur Patil\\Source\\Repos\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj",
+        "projectPath": "C:\\Users\\Mayur Patil\\Documents\\Project\\BaxtureAssignment\\Baxture Assignment\\Baxture Assignment.csproj",
         "packagesPath": "C:\\Users\\Mayur Patil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mayur Patil\\Source\\Repos\\BaxtureAssignment\\Baxture Assignment\\obj\\",
+        "outputPath": "C:\\Users\\Mayur Patil\\Documents\\Project\\BaxtureAssignment\\Baxture Assignment\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Mayur Patil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,7 +38,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -48,17 +58,17 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
-            "Microsoft.Data.SqlClient": {
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
-              "version": "[5.1.4, )"
+              "version": "[1.21.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.1.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.6, )"
             }
           },
           "imports": [
@@ -80,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

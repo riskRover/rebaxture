@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("f67f2601-d6d9-4bbf-a925-dc6b34623389")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Baxture Assignment")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be4ffeca5fd42b77aedf46a367d3a46c43291720")]
 [assembly: System.Reflection.AssemblyProductAttribute("Baxture Assignment")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Baxture Assignment")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
