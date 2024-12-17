@@ -1,10 +1,14 @@
 CREATE DATABASE  IF NOT EXISTS `baxtureassignmentdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE USER IF NOT EXISTS 'root'@'Database' IDENTIFIED BY 'admin';
+-- Grant privileges to root user
+GRANT ALL PRIVILEGES ON `baxtureassignmentdb`.* TO 'root'@'Database';
+FLUSH PRIVILEGES;
 USE `baxtureassignmentdb`;
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
 -- Host: localhost    Database: baxtureassignmentdb
 -- ------------------------------------------------------
--- Server version	9.1.0
+-- Server version       9.1.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -61,7 +65,7 @@ CREATE PROCEDURE `DeleteUserByID`(
     IN `Id` INT
 )
 BEGIN
-    DELETE FROM `Users`
+    DELETE FROM `users`
     WHERE `Id` = Id;
 END ;;
 DELIMITER ;
@@ -81,7 +85,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `GetAllUsers`()
 BEGIN
-    SELECT * FROM `Users`;
+    SELECT * FROM `users`;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -102,7 +106,7 @@ CREATE PROCEDURE `GetUserByID`(
     IN `Id` INT
 )
 BEGIN
-    SELECT * FROM `Users` WHERE `Id` = Id;
+    SELECT * FROM `users` WHERE `Id` = Id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -128,7 +132,7 @@ CREATE PROCEDURE `InsertUser`(
     IN `Hobbies` VARCHAR(50)
 )
 BEGIN
-    INSERT INTO `Users` (`Id`, `Username`, `Password`, `IsAdmin`, `Age`, `Hobbies`)
+    INSERT INTO `users` (`Id`, `Username`, `Password`, `IsAdmin`, `Age`, `Hobbies`)
     VALUES (Id, Username, Password, IsAdmin, Age, Hobbies);
 END ;;
 DELIMITER ;
@@ -155,7 +159,7 @@ CREATE PROCEDURE `UpdateUserByID`(
     IN `Hobbies` VARCHAR(50)
 )
 BEGIN
-    UPDATE `Users`
+    UPDATE `users`
     SET
         `Username` = Username,
         `Password` = Password,
