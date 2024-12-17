@@ -6,13 +6,12 @@ services:
    context: ./Docker-File/DB
   image: riskrover/db
   container_name: Database
+  environment:
+   - MYSQL_ROOT_PASSWORD=admin  # Set the MySQL root password
   ports:
    - "3306:3306"
 #  volumes:
 #   - dbdata:/var/lib/mysql
-  environment:
-   - MYSQL_ROOT_PASSWORD="admin"  # Set the MySQL root password
-                             # Expose MySQL port
 
  Application:
   build:
