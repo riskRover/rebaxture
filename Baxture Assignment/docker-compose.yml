@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+ Database:
+  build:
+   context: ./Docker-File/DB
+  image: riskrover/db
+  container_name: Database
+  environment:
+   - MYSQL_ROOT_PASSWORD=admin  # Set the MySQL root password
+  ports:
+   - "3306:3306"
+#  volumes:
+#   - dbdata:/var/lib/mysql
+
+ Application:
+  build:
+   context: .
+   dockerfile: ./Docker-File/App/Dockerfile
+  image: riskrover/app
+  container_name: Application
+  depends_on:
+   - Database
+  ports:
+   - "8080:80"
+  # restart: always
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+    # - DBHOST=db
+#volumes:
+# dbdata: {}
