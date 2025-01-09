@@ -77,4 +77,4 @@ spec:
     - protocol: TCP
       port: 8080  # External port for accessing the application
       targetPort: 80  # Internal port where the app runs
-  type: ClusterIP  # Internal cluster IP service
+  type: ClusterIP  # Internal cluster IP service, # NodePort = Type set to NodePort to expose externally, # LoadBalancer = Change service type to LoadBalancer
