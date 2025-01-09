@@ -56,6 +56,6 @@ jobs:
     - name: Deploy to Kubernetes on KIND
       run: |
         # Substitute the RELEASE_TAG in the deployment.yaml file
-        sed "s|\${DOCKER_USERNAME}|${{ secrets.DOCKER_USERNAME }}|g" /home/ubuntu/k8s/deployment.yaml | sed "s|\${RELEASE_TAG}|${{ env.RELEASE_TAG }}|g" | kubectl apply -f -
+        sed "s|\${DOCKER_USERNAME}|${{ secrets.DOCKER_USERNAME }}|g" ./'Baxture Assignment'/deployment.yaml | sed "s|\${RELEASE_TAG}|${{ env.RELEASE_TAG }}|g" | kubectl apply -f -
         kubectl rollout status deployment/my-app
         kubectl rollout status deployment/my-db
