@@ -1,0 +1,80 @@
+# Database Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  replicas: 1  # Only one replica of the database
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: database
+          image: riskrover/db
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "admin"  # Set the MySQL root password
+          ports:
+            - containerPort: 3306  # Expose MySQL port
+
+---
+# Database Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-service
+spec:
+  selector:
+    app: database  # Select the database deployment
+  ports:
+    - protocol: TCP
+      port: 3306  # Service will be exposed on this port
+      targetPort: 3306
+  type: ClusterIP  # Internal cluster IP service
+
+---
+# Application Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application
+spec:
+  replicas: 1  # Only one replica of the application
+  selector:
+    matchLabels:
+      app: application
+  template:
+    metadata:
+      labels:
+        app: application
+    spec:
+      containers:
+        - name: application
+          image: riskrover/app
+          ports:
+            - containerPort: 80  # Expose app port
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"  # Set environment variable for development
+            - name: DBHOST
+              value: "database-service"  # Connect to database service
+
+---
+# Application Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: application-service
+spec:
+  selector:
+    app: application  # Select the application deployment
+  ports:
+    - protocol: TCP
+      port: 8080  # External port for accessing the application
+      targetPort: 80  # Internal port where the app runs
+  type: ClusterIP  # Internal cluster IP service
