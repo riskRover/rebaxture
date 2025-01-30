@@ -1,0 +1,64 @@
+name: Terraform Workflow for KIND Cluster Setup
+
+on:
+  push:
+    branches:
+      - main  # Trigger this workflow on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on PR to the main branch
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Terraform
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.4.0  # Specify the version of Terraform to use
+
+      # Step 3: Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+
+      # Step 4: Set up the SSH private key for remote-exec
+      - name: Set up SSH private key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      # Step 5: Initialize Terraform
+      - name: Terraform Init
+        run: terraform init
+
+      # Step 6: Terraform Plan (optional step to preview changes)
+      - name: Terraform Plan
+        run: terraform plan
+
+      # Step 7: Terraform Apply (applies the configuration)
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      # Step 8: Output the kind-config.yaml
+      - name: Show Outputs
+        run: |
+          terraform output kind_config_yaml
+          terraform output control_plane_ip
+          terraform output worker_node_1_ip
+          terraform output worker_node_2_ip
+
+      # Optional Step 9: Destroy Infrastructure (useful for cleanup)
+      # Uncomment the following lines if you want to destroy the infrastructure after applying
+      # - name: Terraform Destroy
+      #   run: terraform destroy -auto-approve
