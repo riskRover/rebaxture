@@ -38,6 +38,24 @@ resource "aws_instance" "control_plane" {
   tags = {
     Name = "control-plane"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum update -y",  # Update the system
+      "sudo yum install -y docker",  # Install Docker
+      "sudo systemctl enable docker && sudo systemctl start docker",  # Enable and start Docker service
+      "curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.18.0/kind-linux-amd64",  # Download KIND binary
+      "chmod +x ./kind",  # Make the KIND binary executable
+      "sudo mv ./kind /usr/local/bin/kind"  # Move KIND binary to the system path
+    ]
+
+    connection {
+      type        = "ssh"  # SSH connection method
+      user        = "ec2-user"  # SSH username (for Amazon Linux AMIs)
+      private_key = file(var.ssh_private_key_path)  # Path to the private key for SSH
+      host        = aws_instance.control_plane.public_ip  # Public IP of the control plane EC2 instance
+    }
+  }
 }
 
 resource "aws_instance" "worker_node_1" {
@@ -49,6 +67,24 @@ resource "aws_instance" "worker_node_1" {
   tags = {
     Name = "worker-node-1"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum update -y",
+      "sudo yum install -y docker",
+      "sudo systemctl enable docker && sudo systemctl start docker",
+      "curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.18.0/kind-linux-amd64",
+      "chmod +x ./kind",
+      "sudo mv ./kind /usr/local/bin/kind"
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file(var.ssh_private_key_path)  # Path to the private key for SSH
+      host        = aws_instance.worker_node_1.public_ip
+    }
+  }
 }
 
 resource "aws_instance" "worker_node_2" {
@@ -59,6 +95,24 @@ resource "aws_instance" "worker_node_2" {
 
   tags = {
     Name = "worker-node-2"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum update -y",
+      "sudo yum install -y docker",
+      "sudo systemctl enable docker && sudo systemctl start docker",
+      "curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.18.0/kind-linux-amd64",
+      "chmod +x ./kind",
+      "sudo mv ./kind /usr/local/bin/kind"
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file(var.ssh_private_key_path)  # Path to the private key for SSH
+      host        = aws_instance.worker_node_2.public_ip
+    }
   }
 }
 
@@ -102,6 +156,7 @@ resource "local_file" "kind_config" {
 resource "null_resource" "docker_network_control_plane" {
   provisioner "remote-exec" {
     inline = [
+      "sleep 30",  # Wait for Docker service to be ready
       "docker network create --driver bridge kind-net"
     ]
 
@@ -119,6 +174,7 @@ resource "null_resource" "docker_network_control_plane" {
 resource "null_resource" "docker_network_worker_1" {
   provisioner "remote-exec" {
     inline = [
+      "sleep 30",  # Wait for Docker service to be ready
       "docker network create --driver bridge kind-net"
     ]
 
@@ -136,6 +192,7 @@ resource "null_resource" "docker_network_worker_1" {
 resource "null_resource" "docker_network_worker_2" {
   provisioner "remote-exec" {
     inline = [
+      "sleep 30",  # Wait for Docker service to be ready
       "docker network create --driver bridge kind-net"
     ]
 
