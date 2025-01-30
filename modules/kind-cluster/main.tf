@@ -2,6 +2,7 @@ resource "aws_security_group" "kind_sg" {
   name        = "kind-sg"
   description = "Security group for KIND cluster EC2 instances"
 
+# Allow Kubernetes API access (6443)
   ingress {
     from_port   = 6443
     to_port     = 6443
@@ -9,6 +10,7 @@ resource "aws_security_group" "kind_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+# Allow Docker Remote API access (2375)
   ingress {
     from_port   = 2375
     to_port     = 2375
@@ -16,6 +18,15 @@ resource "aws_security_group" "kind_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+ # Allow SSH access (22) from your IP or a specific range of IPs
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["<your-ip>/32"]  # Replace <your-ip> with your public IP address (or a range)
+  }
+
+# Allow internal communication between EC2 instances (private IP communication)
   egress {
     from_port   = 0
     to_port     = 0
