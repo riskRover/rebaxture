@@ -36,13 +36,17 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ env.RELEASE_TAG }} .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/app:${{ env.RELEASE_TAG }} .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/db:${{ env.RELEASE_TAG }} .
 
     - name: Push Docker Image to Docker Hub
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ env.RELEASE_TAG }}
-        docker tag ${{ secrets.DOCKER_USERNAME }}/my-app:${{ env.RELEASE_TAG }} ${{ secrets.DOCKER_USERNAME }}/my-app:latest
-        docker push ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/app:${{ env.RELEASE_TAG }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/db:${{ env.RELEASE_TAG }}
+        docker tag ${{ secrets.DOCKER_USERNAME }}/app:${{ env.RELEASE_TAG }} ${{ secrets.DOCKER_USERNAME }}/app:latest
+        docker tag ${{ secrets.DOCKER_USERNAME }}/db:${{ env.RELEASE_TAG }} ${{ secrets.DOCKER_USERNAME }}/db:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/app:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/db:latest
 
   deploy:
     runs-on: self-hosted
@@ -51,11 +55,20 @@ jobs:
     steps:
     - name: Load Docker Image into KIND Cluster
       run: |
-        kind load docker-image ${{ secrets.DOCKER_USERNAME }}/my-app:${{ env.RELEASE_TAG }} --name kind-cluster
+        kind load docker-image ${{ secrets.DOCKER_USERNAME }}/app:${{ env.RELEASE_TAG }} --name kind-cluster
+        kind load docker-image ${{ secrets.DOCKER_USERNAME }}/db:${{ env.RELEASE_TAG }} --name kind-cluster
 
+    # Substitute DOCKER_USERNAME and RELEASE_TAG in the deployment.yaml file
     - name: Deploy to Kubernetes on KIND
       run: |
-        # Substitute the RELEASE_TAG in the deployment.yaml file
+        # Substitute Docker username and release tag into deployment.yaml using sed
         sed "s|\${DOCKER_USERNAME}|${{ secrets.DOCKER_USERNAME }}|g" ./'Baxture Assignment'/deployment.yaml | sed "s|\${RELEASE_TAG}|${{ env.RELEASE_TAG }}|g" | kubectl apply -f -
-        kubectl rollout status deployment/my-app
-        kubectl rollout status deployment/my-db
+        
+        # Check the status of the deployments
+        kubectl rollout status deployment/database
+        kubectl rollout status deployment/application
+
+      # Expose the application (ensure it's running before checking)
+    - name: Check if application is accessible externally
+      run: |
+        kubectl get svc application-service  # You can check the NodePort assignment
