@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: database
-          image: riskrover/db
+          image: "${DOCKER_USERNAME}/db:${RELEASE_TAG}" #riskrover/db
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "admin"  # Set the MySQL root password
@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
         - name: application
-          image: riskrover/app
+          image: "${DOCKER_USERNAME}/app:${RELEASE_TAG}" # riskrover/app
           ports:
             - containerPort: 80  # Expose app port
           env:
