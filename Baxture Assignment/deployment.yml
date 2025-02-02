@@ -65,7 +65,7 @@ spec:
               value: "database-service"  # Connect to database service
 
 ---
-# Application Service
+# Application Service (Web Application) - External (using NodePort)
 apiVersion: v1
 kind: Service
 metadata:
@@ -77,4 +77,5 @@ spec:
     - protocol: TCP
       port: 8080  # External port for accessing the application
       targetPort: 80  # Internal port where the app runs
-  type: ClusterIP  # Internal cluster IP service, # NodePort = Type set to NodePort to expose externally, # LoadBalancer = Change service type to LoadBalancer
+      nodePort: 30000  # Expose externally on port 30000
+  type: NodePort  # Expose the service on a NodePort (accessible externally)
